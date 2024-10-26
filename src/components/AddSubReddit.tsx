@@ -63,7 +63,7 @@ const AddSubReddit: React.FC<AddSubRedditProps> = ({ setSubreddits }) => {
 
 	return (
 		<Dialog open={open} onOpenChange={handleClose}>
-			<DialogTrigger className="absolute bottom-10 right-10 h-16 w-16 rounded-full shadow-md grid place-content-center bg-black">
+			<DialogTrigger className="absolute bottom-10 right-10 h-16 w-16 rounded-full shadow-md grid place-content-center bg-orange-600">
 				<Plus color="white" strokeWidth={3} />
 			</DialogTrigger>
 			<DialogContent className="w-96 rounded-lg ">

@@ -22,11 +22,10 @@ interface PostData {
 }
 
 const SubReddit: React.FC<SubRedditViewProps> = ({ subReddit }) => {
-	
+
 	const { data, isLoading, error } = useQuery({
 		queryKey: ["subReddits", subReddit],
 		queryFn: () => getSubRedditPosts(subReddit),
-		staleTime: 1000 * 60 * 5,
 	});
 
 	return (
@@ -34,7 +33,7 @@ const SubReddit: React.FC<SubRedditViewProps> = ({ subReddit }) => {
 			<div className="h-full p-2 rounded-lg border bg-card text-card-foreground shadow-sm bg-white flex flex-col">
 				{/* header for the list */}
 				<div className="flex justify-between p-2">
-					<span className="self-center">r/{subReddit}</span>
+					<span className="self-center font-bold text-orange-600">r/{subReddit}</span>
 					<DropdownMenu>
 						<DropdownMenuTrigger className="focus:outline-none">
 							<Button className="rounded-full h-10 w-10" variant={"ghost"}>
