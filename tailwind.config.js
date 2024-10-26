@@ -5,7 +5,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				primary: ["Poppins", "sans-serif"],
+				primary: ["Inter", "sans-serif"],
+				secondary: ["Poppins", "sans-serif"],
 			},
 			borderRadius: {
 				lg: "var(--radius)",
