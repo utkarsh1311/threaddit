@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { useState } from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -23,7 +23,11 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 
-const AddSubReddit = () => {
+interface AddSubRedditProps {
+	setSubreddits: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+const AddSubReddit: React.FC<AddSubRedditProps> = ({ setSubreddits }) => {
 	const [open, setOpen] = useState(false);
 
 	const formSchema = z.object({
@@ -42,6 +46,13 @@ const AddSubReddit = () => {
 
 	function onSubmit(values: z.infer<typeof formSchema>) {
 		setOpen(!open);
+		
+		setSubreddits(prev => {
+			const updatedSubreddits = [...prev, values.subredditName];
+			// Save the updated subreddit list to localStorage
+			localStorage.setItem('subReddits', JSON.stringify(updatedSubreddits));
+			return updatedSubreddits;
+		});
 		console.log(values);
 	}
 
@@ -80,7 +91,10 @@ const AddSubReddit = () => {
 								</FormItem>
 							)}
 						/>
-						<Button className="w-full bg-zinc-900 shadow-md text-zinc-100" type="submit">
+						<Button
+							className="w-full bg-zinc-900 shadow-md text-zinc-100"
+							type="submit"
+						>
 							Submit
 						</Button>
 					</form>

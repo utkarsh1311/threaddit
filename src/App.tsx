@@ -4,10 +4,9 @@ import Header from "./components/Header";
 import SubReddit from "./components/SubReddit";
 
 const App = () => {
-	const [subReddits, setSubReddits] = useState<string[]>([
-		"reactjs",
-		"frontend",
-	]);
+	const [subReddits, setSubReddits] = useState<string[]>(
+		JSON.parse(localStorage.getItem("subReddits") || "[]")
+	);
 
 	return (
 		<div className="grid p-4 place-content-center min-h-screen grid-cols-1 grid-rows-1 font-primary">
@@ -25,7 +24,7 @@ const App = () => {
 						))}
 					</div>
 				</div>
-				<AddSubReddit />
+				<AddSubReddit setSubreddits={setSubReddits} />
 			</div>
 		</div>
 	);
