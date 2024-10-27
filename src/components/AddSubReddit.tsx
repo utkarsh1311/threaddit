@@ -46,11 +46,11 @@ const AddSubReddit: React.FC<AddSubRedditProps> = ({ setSubreddits }) => {
 
 	function onSubmit(values: z.infer<typeof formSchema>) {
 		setOpen(!open);
-		
+
 		setSubreddits(prev => {
-			const updatedSubreddits = [...prev, values.subredditName];
+			const updatedSubreddits = [values.subredditName, ...prev];
 			// Save the updated subreddit list to localStorage
-			localStorage.setItem('subReddits', JSON.stringify(updatedSubreddits));
+			localStorage.setItem("subReddits", JSON.stringify(updatedSubreddits));
 			return updatedSubreddits;
 		});
 		console.log(values);

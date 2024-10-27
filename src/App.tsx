@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AddSubReddit from "./components/AddSubReddit";
 import Header from "./components/Header";
 import SubReddit from "./components/SubReddit";
@@ -9,6 +9,13 @@ const App = () => {
 		JSON.parse(localStorage.getItem("subReddits") || "[]")
 	);
 
+	const scrollToRef = useRef<HTMLDivElement | null>(null);
+
+	useEffect(() => {
+		if (scrollToRef.current) {
+			scrollToRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	}, [subReddits]);
 
 	return (
 		<div className="grid p-4 place-content-center min-h-screen grid-cols-1 grid-rows-1 font-primary">
@@ -23,12 +30,17 @@ const App = () => {
 							</div>
 						)}
 						<TransitionGroup component={null}>
-							{subReddits.map((subReddit: string) => (
-								<CSSTransition key={subReddit} timeout={400} classNames="item">
+							{subReddits.map((subReddit: string, index: number) => (
+								<CSSTransition
+									key={subReddit}
+									timeout={400}
+									classNames="item scroll"
+								>
 									<SubReddit
 										key={subReddit}
 										subReddit={subReddit}
 										setSubReddits={setSubReddits}
+										ref={index === 0 ? scrollToRef : null}
 									/>
 								</CSSTransition>
 							))}

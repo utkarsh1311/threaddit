@@ -1,37 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:wght@400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @layer base {
-  :root {
-    --radius: 0.5rem
-  }
+	:root {
+		--radius: 0.5rem;
+	}
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
 /* For IE, Edge and Firefox */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }
 .item-exit {
-  scale: 1;
+	scale: 1;
 }
 
 .item-exit-active {
-  scale: 0;
-  transition: scale 400ms ease-out;
+	scale: 0;
+	transition: scale 400ms ease-out;
 }
 
 .item-enter {
-  scale: 0;
+	scale: 0;
 }
 
 .item-enter-active {
-  scale: 1;
-  transition: scale 400ms ease-in;
+	scale: 1;
+	transition: scale 400ms ease-in;
+}
+
+#scroll {
+	direction: rtl;
 }
