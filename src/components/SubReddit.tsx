@@ -25,6 +25,12 @@ interface PostData {
 	permalink: string;
 }
 
+const ErrorMessage = ({ message }: { message: string }) => (
+	<div className="flex items-center justify-center p-4 bg-red-100 border border-red-400 text-red-700 rounded-md">
+		<span>{message}</span>
+	</div>
+);
+
 const SubReddit = React.forwardRef<HTMLDivElement, SubRedditViewProps>(
 	(props, ref) => {
 		const { data, isLoading, error, refetch, isRefetching } = useQuery({
@@ -38,10 +44,6 @@ const SubReddit = React.forwardRef<HTMLDivElement, SubRedditViewProps>(
 				localStorage.setItem("subReddits", JSON.stringify(updatedSubReddits));
 				return updatedSubReddits;
 			});
-		};
-
-		const errorMessages: { [key: string]: string } = {
-			"Not Found": "Subreddit not found",
 		};
 
 		return (
@@ -80,13 +82,8 @@ const SubReddit = React.forwardRef<HTMLDivElement, SubRedditViewProps>(
 									<SkeletonPost key={i} />
 								))}
 
-							{error && (
-								<div className="h-full w-full grid place-content-center">
-									<span>
-										{errorMessages[error.message] || "An error occurred"}
-									</span>
-								</div>
-							)}
+							{error && <ErrorMessage message={error.message} />}
+
 							{data &&
 								data.data.children.map(({ data }: { data: PostData }) => (
 									<Post
