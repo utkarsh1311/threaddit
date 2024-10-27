@@ -34,7 +34,7 @@ const App = () => {
 								<CSSTransition
 									key={subReddit}
 									timeout={400}
-									classNames="item scroll"
+									classNames="item"
 								>
 									<SubReddit
 										key={subReddit}

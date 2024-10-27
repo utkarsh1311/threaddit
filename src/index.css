@@ -35,7 +35,3 @@
 	scale: 1;
 	transition: scale 400ms ease-in;
 }
-
-#scroll {
-	direction: rtl;
-}
