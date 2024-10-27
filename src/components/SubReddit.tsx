@@ -33,8 +33,14 @@ const ErrorMessage = ({ message }: { message: string }) => (
 
 const SubReddit = React.forwardRef<HTMLDivElement, SubRedditViewProps>(
 	(props, ref) => {
-		const { data, isLoading, error, refetch, isRefetching } = useQuery({
-			queryKey: ["subReddits", props.subReddit],
+		const {
+			data: subRedditData,
+			error,
+			isLoading,
+			isRefetching,
+			refetch,
+		} = useQuery({
+			queryKey: ["subreddit", props.subReddit],
 			queryFn: () => getSubRedditPosts(props.subReddit),
 		});
 
@@ -84,14 +90,14 @@ const SubReddit = React.forwardRef<HTMLDivElement, SubRedditViewProps>(
 
 							{error && <ErrorMessage message={error.message} />}
 
-							{data &&
-								data.data.children.map(({ data }: { data: PostData }) => (
+							{subRedditData &&
+								subRedditData.map((post: PostData) => (
 									<Post
-										key={data.id}
-										title={data.title}
-										author={data.author}
-										timestamp={data.created_utc}
-										url={data.permalink}
+										key={post.id}
+										title={post.title}
+										author={post.author}
+										timestamp={post.created_utc}
+										url={post.permalink}
 									/>
 								))}
 						</div>
