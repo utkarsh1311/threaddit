@@ -1,4 +1,4 @@
-const BASE_URL = "https://www.reddit.com/r/";
+const BASE_URL = "https://www.reddit.com/r";
 
 const getSubRedditPosts = async (subreddit: string) => {
 	const response = await fetch(`${BASE_URL}/${subreddit}.json`);
