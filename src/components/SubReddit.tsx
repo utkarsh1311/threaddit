@@ -27,6 +27,11 @@ const SubReddit: React.FC<SubRedditViewProps> = ({
 	subReddit,
 	setSubReddits,
 }) => {
+	const { data, isLoading, error, refetch, isRefetching } = useQuery({
+		queryKey: ["subReddits", subReddit],
+		queryFn: () => getSubRedditPosts(subReddit),
+	});
+
 	const deleteSubReddit = () => {
 		setSubReddits(prev => {
 			const updatedSubReddits = prev.filter(sub => sub !== subReddit);
@@ -34,11 +39,6 @@ const SubReddit: React.FC<SubRedditViewProps> = ({
 			return updatedSubReddits;
 		});
 	};
-
-	const { data, isLoading, error } = useQuery({
-		queryKey: ["subReddits", subReddit],
-		queryFn: () => getSubRedditPosts(subReddit),
-	});
 
 	return (
 		<div className="h-full w-1/4 shrink-0 snap-start p-2 rounded-md lg:w-1/3 md:1/2 sm:w-full transition-transform  duration-200">
@@ -55,7 +55,9 @@ const SubReddit: React.FC<SubRedditViewProps> = ({
 							</Button>
 						</DropdownMenuTrigger>
 						<DropdownMenuContent className="font-primary relative right-10">
-							<DropdownMenuItem>Refresh</DropdownMenuItem>
+							<DropdownMenuItem onClick={() => refetch()}>
+								Refresh
+							</DropdownMenuItem>
 							<DropdownMenuItem onClick={deleteSubReddit}>
 								Delete
 							</DropdownMenuItem>
@@ -66,7 +68,7 @@ const SubReddit: React.FC<SubRedditViewProps> = ({
 				{/* list of posts */}
 				<div className="flex-1 overflow-y-auto scrollbar-hide">
 					<div className="grid grid-cols-1 gap-2">
-						{isLoading &&
+						{(isLoading || isRefetching) &&
 							Array.from({ length: 5 }).map((_, i) => <SkeletonPost key={i} />)}
 
 						{error && <div>Error: {error.message}</div>}
