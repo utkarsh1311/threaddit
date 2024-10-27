@@ -18,3 +18,20 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+.item-exit {
+  scale: 1;
+}
+
+.item-exit-active {
+  scale: 0;
+  transition: scale 400ms ease-out;
+}
+
+.item-enter {
+  scale: 0;
+}
+
+.item-enter-active {
+  scale: 1;
+  transition: scale 400ms ease-in;
+}
