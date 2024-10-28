@@ -57,10 +57,10 @@ const SubReddit = React.forwardRef<HTMLDivElement, SubRedditViewProps>(
 				className="h-full w-1/4 shrink-0 snap-start p-2 rounded-md lg:w-1/3 md:1/2 sm:w-full transition-transform  duration-200 sm:p-0"
 				ref={ref}
 			>
-				<div className="h-full p-2 rounded-lg border bg-card text-card-foreground shadow-sm bg-white flex flex-col">
+				<div className="h-full p-2 rounded-lg border bg-card text-card-foreground shadow-sm bg-white flex flex-col dark:bg-zinc-950 dark:border-zinc-700">
 					{/* header for the list */}
 					<div className="flex justify-between p-2">
-						<span className="self-center font-bold text-orange-600">
+						<span className="self-center font-bold text-orange-600 ">
 							r/{props.subReddit}
 						</span>
 						<DropdownMenu>
