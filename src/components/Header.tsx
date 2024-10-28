@@ -2,8 +2,8 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 const Header = () => {
 	return (
-		<header className="flex justify-between p-4">
-			<span className="text-6xl font-extrabold text-zinc-900">Threaddit</span>
+		<header className="flex justify-between p-4 sm:px-1">
+			<span className="text-6xl font-extrabold text-zinc-900 sm:text-4xl sm:font-bold">Threaddit</span>
 
 			<a
 				href="https://github.com/utkarsh1311/threaddit"
