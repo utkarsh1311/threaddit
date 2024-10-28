@@ -6,6 +6,7 @@ import "./index.css";
 
 import { persistQueryClient } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+import { ThemeProvider } from "./components/theme-provider.tsx";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -15,7 +16,6 @@ const queryClient = new QueryClient({
 		},
 	},
 });
-
 
 const localStoragePersister = createSyncStoragePersister({
 	storage: window.localStorage,
@@ -29,7 +29,9 @@ persistQueryClient({
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
 		<QueryClientProvider client={queryClient}>
-			<App />
+			<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+				<App />
+			</ThemeProvider>
 		</QueryClientProvider>
 	</StrictMode>
 );
